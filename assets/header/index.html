@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Looksmaxx</title><style>@font-face{font-family:Sora;src:url(fonts/Sora.ttf);font-weight:100 800;font-display:swap}
+*{box-sizing:border-box}body{margin:0;background:#08090b;color:#fbfbfc;font-family:Sora,Arial,sans-serif}
+.hero{position:relative;isolation:isolate;width:100%;aspect-ratio:2.35;overflow:hidden;container-type:inline-size;--accent:#e1f2a6;--muted:#959aa4}
+.hero h2,.hero p{margin:0}.inner{position:absolute;inset:0;padding:6%;display:flex;flex-direction:column;justify-content:center}
+.meta{font-size:12px;font-weight:500;letter-spacing:.07em;text-transform:uppercase}.top{position:absolute;top:9%;left:6%;color:var(--muted)}
+.selection{position:relative;display:inline-block;isolation:isolate;white-space:nowrap}.selection:after{content:attr(data-text);position:absolute;inset:0;right:-.025em;z-index:1;color:#17191b;background:var(--accent);font:inherit;letter-spacing:inherit;line-height:inherit;clip-path:inset(0 100% 0 0);animation:select 8s cubic-bezier(.7,0,.2,1) infinite;pointer-events:none}.selection>.text{position:relative}.selection.underline:after{color:inherit;background:linear-gradient(transparent 83%,var(--accent) 83%)}@keyframes select{0%,15%{clip-path:inset(0 100% 0 0)}39%,83%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 100% 0 0)}}
+.pointer{position:absolute;z-index:5;right:-.035em;bottom:-.48em;display:block;width:20px;height:26px;animation:point 8s cubic-bezier(.4,0,.2,1) infinite;filter:drop-shadow(0 1px 1px #0003);font:11px/1.2 Sora,Arial,sans-serif;letter-spacing:0}.pointer svg{display:block;width:100%;height:100%}.pointer:after{content:attr(data-note);position:absolute;top:25px;left:13px;background:#373c46;color:#fff;padding:7px 10px;border-radius:5px;white-space:nowrap;animation:note 8s ease infinite;box-shadow:0 2px 8px #0001}@keyframes point{0%,100%{transform:translate(100px,52px);opacity:0}17%{opacity:1}39%,81%{transform:translate(0,0);opacity:1}92%{opacity:0}}@keyframes note{0%,34%,91%,100%{opacity:0}43%,80%{opacity:1}}
+.selected .inner{align-items:flex-start;justify-content:center;gap:12px}
+.selected .thought{height:1.5em;overflow:hidden;font-size:3.6cqw;letter-spacing:-.055em;line-height:1.5;font-weight:450;color:#90959e}
+.selected .thought .track{animation:selected-thought 12s cubic-bezier(.76,0,.24,1) infinite}
+.selected .thought .track span{display:block;height:1.5em}
+.selected .brand{font-size:14.1cqw;line-height:1.18;letter-spacing:-.08em;font-weight:650}
+.selected .reply{font-size:3.1cqw;line-height:1.3;letter-spacing:-.045em;font-weight:400;color:#a0a5ae}
+.selected .footer{position:absolute;left:6%;right:6%;bottom:8%;display:flex;justify-content:space-between;gap:18px;font-size:14px;color:#7b828e}
+.selected .selection:after{animation-duration:12s}
+.selected .pointer,.selected .pointer:after{animation-duration:12s}
+.selected .pointer:after{background:#e1f2a6;color:#20241a}
+@keyframes selected-thought{0%,21%{transform:translateY(0)}32%,54%{transform:translateY(-1.5em)}65%,87%{transform:translateY(-3em)}100%{transform:translateY(-4.5em)}}
+@media(max-width:650px){.selected .thought{font-size:5.5cqw}.selected .brand{font-size:13.5cqw}.selected .reply{font-size:5cqw}.selected .footer{left:24px;right:24px;bottom:18px;font-size:10px}.selected .footer span:last-child{display:none}.selected .inner{gap:14px}}
+
+@media(prefers-reduced-motion:reduce){.hero *,.hero :before,.hero :after{animation:none!important}.selection:after{clip-path:inset(0)}.pointer{display:none}}
+</style></head><body><div class="hero dark selected"><div class="inner">
+<p class="meta top">Looksmaxx</p>
+<div class="thought"><div class="track"><span>“I like this.”</span><span>“More like that.”</span><span>“This part is cool.”</span><span>“I like this.”</span></div></div>
+<h2 class="brand"><span class="selection" data-text="looksmaxx."><span class="text">looksmaxx.</span><i class="pointer" data-note="make it mine." aria-hidden="true"></i></span></h2>
+<p class="reply">Make it mine.</p>
+<div class="footer"><span>Your references. Your taste.</span><span>Give your taste a language.</span></div>
+</div></div><script>
+const animationSpeed=1.5;
+const cursor='<svg viewBox="0 0 22 29" xmlns="http://www.w3.org/2000/svg"><path d="M2 2V23L7.6 17.6L11.7 27L16.2 25L12.1 16H20Z" fill="#fff" stroke="#25282e" stroke-width="2" stroke-linejoin="round"/></svg>';
+document.querySelectorAll('.pointer').forEach(p=>p.innerHTML=cursor);
+document.querySelectorAll('[data-reveal]').forEach(el=>[...el.dataset.reveal].forEach((letter,i)=>{const s=document.createElement('span');s.textContent=letter;s.style.setProperty('--i',i);el.append(s)}));
+document.getAnimations().forEach(animation=>animation.updatePlaybackRate(animationSpeed));
+</script></body></html>
